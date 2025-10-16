@@ -5,7 +5,7 @@ Spring Cloud 기반 마이크로서비스 아키텍처에서 API Gateway·Discov
 ```text
 Client (웹/모바일)
       |
-      | HTTPS 요청 (api.example.com/orders)
+      | HTTPS 요청 (fo.hasuon.com/api/v1)
       v
 API Gateway (Spring Cloud Gateway)
       |
@@ -15,7 +15,7 @@ Service Discovery (Eureka/Consul)
       |
       | 대상 서비스 인스턴스 조회
       v
-Order Service (Spring Boot Microservice)
+Operation Service (Spring Boot Microservice)
       |
       | --> Config Client (Spring Cloud Config)
       |       - Config Server에서 환경 프로퍼티 fetch
@@ -35,7 +35,7 @@ Inventory Service / Payment Service …
       v
 Database / 외부 시스템
 
-응답 흐름: 하위 서비스 → Order Service → API Gateway → Client
+응답 흐름: 하위 서비스 → Operation Service → API Gateway → Client
 ```
 
 ## 단계별 설명
@@ -53,7 +53,7 @@ Database / 외부 시스템
   - 모든 마이크로서비스는 부팅 시 `bootstrap.properties` 또는 `bootstrap.yml`을 통해 Config Server에 등록된 환경 값을 가져옵니다.
   - 설정 변경이 있을 경우 `/actuator/refresh` 또는 Spring Cloud Bus를 사용해 동적으로 갱신할 수 있습니다.
 
-- **개별 서비스 (예: Order Service)**
+- **개별 서비스 (예: Operation Service)**
   - Gateway에서 전달받은 요청을 내장 Tomcat이 처리하고, 보안/로깅 필터와 HandlerInterceptor를 거친 후 컨트롤러가 비즈니스 로직을 수행합니다.
   - 다른 서비스 호출이 필요하면 `OpenFeign` 또는 `WebClient`를 사용하며, 이때도 Discovery를 통해 대상 서비스의 위치를 조회합니다.
   - 각각의 서비스는 자체 데이터베이스나 외부 시스템과 연동합니다.

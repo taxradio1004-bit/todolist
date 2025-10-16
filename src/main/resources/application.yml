@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: todo
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/todo}
+    username: ${SPRING_DATASOURCE_USERNAME:todo}
+    password: ${SPRING_DATASOURCE_PASSWORD:todo}
+    driver-class-name: org.postgresql.Driver
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.portfolio.todo
+  configuration:
+    map-underscore-to-camel-case: true
