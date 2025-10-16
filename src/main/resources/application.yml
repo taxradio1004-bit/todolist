@@ -11,5 +11,6 @@ spring:
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
   type-aliases-package: com.portfolio.todo
+  type-handlers-package: com.portfolio.todo.mybatis.typehandler
   configuration:
     map-underscore-to-camel-case: true
