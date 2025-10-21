@@ -1,5 +1,6 @@
 package com.portfolio.todo.service;
 
+import com.portfolio.todo.dto.CreateTodoRequest;
 import org.springframework.stereotype.Service;
 
 import com.portfolio.todo.mapper.TestMapper;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class TestService {
         return testMapper.getTodo();
     }
 
-    public String postTodo() {
-        return testMapper.postTodo();
+    public String postTodo(CreateTodoRequest request) {
+        return testMapper.postTodo(request);
     }
 }
