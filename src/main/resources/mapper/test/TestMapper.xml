@@ -7,5 +7,14 @@
     <select id="getServiceStatusMessage" resultType="string">
         SELECT 'Todo API is running!'
     </select>
+    <select id="getTodo">
+        SELECT * from todo
+    </select>
+    <select id="postTodo" resultType="string">
+        INSERT INTO todolist.todo
+        (id, title, description, completed, created_at, updated_at)
+        VALUES (uuid_generate_v4(), 'test', '1234', false, now(), now())
+        RETURNING id;
+    </select>
 
 </mapper>

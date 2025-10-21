@@ -6,6 +6,9 @@ import com.portfolio.todo.mapper.TestMapper;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashMap;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TestService {
@@ -14,5 +17,12 @@ public class TestService {
 
     public String getServiceStatusMessage() {
         return testMapper.getServiceStatusMessage();
+    }
+    public List<HashMap<String, Object>> getTodo() {
+        return testMapper.getTodo();
+    }
+
+    public String postTodo() {
+        return testMapper.postTodo();
     }
 }
